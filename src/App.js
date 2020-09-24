@@ -1,25 +1,27 @@
-import React, { useState } from 'react'
-// import Counter from './Counter'
-import CounterHooks from './CounterHooks'
-
-// Context || Has a provider that provides the context, and a consumer which is the thing that'll receive whatever we provide to it (really cool for themes).
-export const ThemeContext = React.createContext()
+import React from 'react'
+import RecipeList from './RecipeList'
 
 function App() {
-  const [theme, setTheme] = useState('red')
-  return (
-    // A provider always need to have "value" which takes an object, which refers to a state
-    <ThemeContext.Provider value={{ backgroundColor: theme }}>
-      <CounterHooks initialCount={5} />
-      <button
-        onClick={() =>
-          setTheme((prevTheme) => (prevTheme === 'red' ? 'blue' : 'red'))
-        }
-      >
-        Switch the Theme
-      </button>
-    </ThemeContext.Provider>
-  )
+  return <RecipeList recipes={sampleRecipes} />
 }
+
+const sampleRecipes = [
+  {
+    id: 1,
+    name: 'Plain Chicken',
+    servings: 3,
+    cookTime: '1:45',
+    instructions:
+      '1. Put salt on chicken\n2. Put chicken in oven\n3.. Eat the chicken',
+  },
+  {
+    id: 2,
+    name: 'Plain Pork',
+    servings: 5,
+    cookTime: '0:45',
+    instructions:
+      '1. Put paprika on pork\n2. Put pork in oven\n3.. Eat the pork',
+  },
+]
 
 export default App
