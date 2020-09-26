@@ -1,7 +1,7 @@
 import React from 'react'
 import RecipeIngredientEdit from './RecipeIngredientEdit'
 
-function RecipeEdit() {
+function RecipeEdit({ recipe }) {
   return (
     <div className='recipe-edit'>
       <div className='recipe-edit__remove-button-container'>
@@ -15,6 +15,7 @@ function RecipeEdit() {
           type='text'
           id='name'
           name='name'
+          value={recipe.name}
           className='recipe-edit__input'
         />
         <label htmlFor='cookTime' className='recipe-edit__label'>
@@ -24,6 +25,7 @@ function RecipeEdit() {
           type='text'
           id='cookTime'
           name='cookTime'
+          value={recipe.cookTime}
           className='recipe-edit__input'
         />
         <label htmlFor='servings' className='recipe-edit__label'>
@@ -34,6 +36,7 @@ function RecipeEdit() {
           min='1'
           id='servings'
           name='servings'
+          value={recipe.servings}
           className='recipe-edit__input'
         />
         <label htmlFor='instructions' className='recipe-edit__label'>
@@ -43,7 +46,9 @@ function RecipeEdit() {
           name='instructions'
           id='instructions'
           className='recipe-edit__input'
-        ></textarea>
+        >
+          {recipe.instructions}
+        </textarea>
       </div>
       <br />
       <label className='recipe-edit__label'>Ingredients</label>
@@ -51,8 +56,9 @@ function RecipeEdit() {
         <div>Name</div>
         <div>Amount</div>
         <div></div>
-        <RecipeIngredientEdit />
-        <RecipeIngredientEdit />
+        {recipe.ingredients.map((ingredient) => (
+          <RecipeIngredientEdit key={ingredient.id} ingredient={ingredient} />
+        ))}
       </div>
       <div className='recipe-edit__add-ingredient-btn-container'>
         <button className='btn btn--primary'>Add Ingredient</button>
