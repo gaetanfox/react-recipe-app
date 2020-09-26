@@ -37,19 +37,20 @@ function App() {
   function handleRecipeAdd() {
     const newRecipe = {
       id: uuidv4(),
-      name: 'New',
+      name: '',
       servings: 1,
-      cookTime: '1:00',
-      instructions: 'Instr.',
+      cookTime: '',
+      instructions: '',
       ingredients: [
         {
           id: uuidv4(),
-          name: 'Name',
-          amount: 'My amount',
+          name: '',
+          amount: '',
         },
       ],
     }
 
+    setSelectedRecipeID(newRecipe.id)
     setRecipes([...recipes, newRecipe])
   }
 
@@ -61,6 +62,9 @@ function App() {
   }
 
   function handleRecipeDelete(id) {
+    if (selectedRecipeID !== null && selectedRecipeID === id) {
+      setSelectedRecipeID(undefined)
+    }
     setRecipes(recipes.filter((recipe) => recipe.id !== id))
   }
 
